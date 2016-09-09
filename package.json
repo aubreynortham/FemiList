@@ -2,6 +2,7 @@
   "name": "react-imdb",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://aubreynortham.github.io/IMDBfortheladies",
   "devDependencies": {
     "react-scripts": "0.4.1"
   },
