@@ -14,7 +14,9 @@ class Results extends Component {
       return (
         <div key={index}>
           <h1>{title}</h1>
-          <p>{movie.rating}</p>
+          <img src={movie.Poster} alt={title} />
+          <p>Released in {movie.year}</p>
+          <p>Bechdel Score: {movie.rating}</p>
         </div>
       )
     })
