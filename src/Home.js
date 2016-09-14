@@ -5,7 +5,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <h1><a href="/FemiList">The FemiList</a></h1>
+        <a href="/FemiList"><img id="femLogo" src="http://i.imgur.com/Pbfm6sX.png" /></a>
         <SearchContainer />
       </div>
     );
