@@ -29,17 +29,17 @@ class Results extends Component {
         movie.iconClass1 = 'fa fa-check green';
         movie.iconClass2 = 'fa fa-check grey';
         movie.iconClass3 = 'fa fa-check grey';
-        movie.femSplain = "Its only 1.";
+        movie.femSplain = "There are at least two female characters but they don't share any dialogue with each other.";
       } else if (movie.rating === "2") {
         movie.iconClass1 = 'fa fa-check green';
         movie.iconClass2 = 'fa fa-check green';
         movie.iconClass3 = 'fa fa-check grey';
-        movie.femSplain = "gonna be a 2";
+        movie.femSplain = "There are at least two female characters who share dialogue with each other at some point in the film, but their only dialogue is about a man.";
       } else {
         movie.iconClass1 = 'fa fa-check green';
         movie.iconClass2 = 'fa fa-check green';
         movie.iconClass3 = 'fa fa-check green';
-        movie.femSplain = "gonna be a 3";
+        movie.femSplain = "This movie passes all test criteria!";
       }
 
       return (
