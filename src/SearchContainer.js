@@ -31,6 +31,7 @@ class SearchContainer extends Component {
             data[i].imdbRating = otherData.imdbRating;
             data[i].Rated = otherData.Rated;
             data[i].Plot = otherData.Plot;
+            data[i].femSplain = otherData.femSplain;
             if (complete++ >= data.length - 1 ){
               self.setState({
                 query: '',
