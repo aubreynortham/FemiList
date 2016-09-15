@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import Search from "./Search"
 import Results from "./Results"
-import {queryOmdb} from "./Utils"
+import calls from "./Utils"
 
 class SearchContainer extends Component {
   constructor(props){
@@ -18,17 +18,41 @@ class SearchContainer extends Component {
     })
   }
   onSubmitQuery(evt){
+    var self = this
     evt.preventDefault();
-    queryOmdb(this.state.query).then( data => {
-      this.setState({
-        query: '',
-        hasSearched: true,
-        movies: data,
-      });
+    calls.queryOmdb(this.state.query).then( data => {
+      var complete = 0
+      console.log("first response");
+      for(var i = 0; i < data.length; i++){
+        (function(i){
+          calls.queryOther(data[i]["imdbid"]).then( otherData => {
+            console.log("otherData", otherData);
+            data[i].Poster = otherData.Poster;
+            data[i].Genre = otherData.Genre;
+            data[i].imdbRating = otherData.imdbRating;
+            data[i].Rated = otherData.Rated;
+            data[i].Plot = otherData.Plot;
+            if (complete++ >= data.length - 1 ){
+              console.log("how many times does this happen?");
+              self.setState({
+                query: '',
+                movies:data,
+                hasSearched: true
+              })
+            }
+          })
+        })(i)
+      }
+      // this.setState({
+      //   query: '',
+      //   hasSearched: true,
+      //   movies: data,
+      // });
     });
   }
 
   render(){
+    console.log("the moveis on renering:", this.state.movies);
     if (this.state.hasSearched){
       return (
         <Results movies={this.state.movies} />
