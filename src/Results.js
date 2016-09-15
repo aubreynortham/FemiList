@@ -22,11 +22,11 @@ class Results extends Component {
           <div id="movieWrap">
             <h1>{title}</h1>
             <img id="movPic" src={movie.Poster} alt={title} />
-            <p>Genre: {movie.Genre}</p>
-            <p>Released in {movie.year}</p>
-            <p>Parental Rating: {movie.Rated}</p>
-            <p>IMDB rating: {movie.imdbRating}</p>
-            <p>Plot: {movie.Plot}</p>
+            <p><span id="boldP">Genre</span>: {movie.Genre}</p>
+            <p><span id="boldP">Release Date</span>: {movie.year}</p>
+            <p><span id="boldP">Parental Rating</span>: {movie.Rated}</p>
+            <p><span id="boldP">IMDB Rating</span>: {movie.imdbRating} / 10</p>
+            <p><span id="boldP">Plot</span>: {movie.Plot}</p>
             <h3>Bechdel Score: {movie.rating} / 3</h3>
           </div>
         </div>

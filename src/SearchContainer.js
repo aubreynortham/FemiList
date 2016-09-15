@@ -22,19 +22,16 @@ class SearchContainer extends Component {
     evt.preventDefault();
     calls.queryFirst(this.state.query).then( data => {
       var complete = 0;
-      console.log("first response");
       for(var i = 0; i < data.length; i++){
 
         (function(i){
           calls.queryOther(data[i]["imdbid"]).then( otherData => {
-            console.log("otherData", otherData);
             data[i].Poster = otherData.Poster;
             data[i].Genre = otherData.Genre;
             data[i].imdbRating = otherData.imdbRating;
             data[i].Rated = otherData.Rated;
             data[i].Plot = otherData.Plot;
             if (complete++ >= data.length - 1 ){
-              console.log("how many times does this happen?");
               self.setState({
                 query: '',
                 movies:data,
@@ -49,7 +46,6 @@ class SearchContainer extends Component {
   }
 
   render(){
-    console.log("the moveis on renering:", this.state.movies);
     if (this.state.hasSearched){
       return (
         <Results movies={this.state.movies} />
@@ -62,7 +58,6 @@ class SearchContainer extends Component {
           query={this.state.query} />
       );
     }
-
   }
 }
 
