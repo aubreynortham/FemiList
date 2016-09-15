@@ -1,7 +1,7 @@
-import React, { Component } from "react"
-import Search from "./Search"
-import Results from "./Results"
-import calls from "./Utils"
+import React, { Component } from "react";
+import Search from "./Search";
+import Results from "./Results";
+import calls from "./Utils";
 
 class SearchContainer extends Component {
   constructor(props){
@@ -15,15 +15,16 @@ class SearchContainer extends Component {
   onSearchInput (evt) {
     this.setState({
       query: evt.target.value,
-    })
+    });
   }
   onSubmitQuery(evt){
-    var self = this
+    var self = this;
     evt.preventDefault();
-    calls.queryOmdb(this.state.query).then( data => {
-      var complete = 0
+    calls.queryFirst(this.state.query).then( data => {
+      var complete = 0;
       console.log("first response");
       for(var i = 0; i < data.length; i++){
+
         (function(i){
           calls.queryOther(data[i]["imdbid"]).then( otherData => {
             console.log("otherData", otherData);
@@ -38,16 +39,12 @@ class SearchContainer extends Component {
                 query: '',
                 movies:data,
                 hasSearched: true
-              })
+              });
             }
-          })
-        })(i)
+          });
+        })(i);
+
       }
-      // this.setState({
-      //   query: '',
-      //   hasSearched: true,
-      //   movies: data,
-      // });
     });
   }
 
@@ -56,17 +53,17 @@ class SearchContainer extends Component {
     if (this.state.hasSearched){
       return (
         <Results movies={this.state.movies} />
-      )
+      );
     } else {
       return (
         <Search
           handleSearchInput={ (evt) => this.onSearchInput(evt) }
           handleSubmitQuery={ (evt) => this.onSubmitQuery(evt) }
           query={this.state.query} />
-      )
+      );
     }
 
   }
 }
 
-export default SearchContainer
+export default SearchContainer;
