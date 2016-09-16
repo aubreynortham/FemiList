@@ -12,6 +12,10 @@ body {
   margin: 0 4em;
   width: 40%;
 }
+.BechdelBox {
+  margin: 0 4em;
+  width: 425px;
+}
 #movieWrap {
   background-color: rgba(249, 252, 252, 0.53);
   border-radius: 5px;
@@ -53,6 +57,7 @@ p {
 #pinkText {
   color: rgba(235, 39, 144, 0.9);
   text-decoration: underline;
+  margin: 0 0 0 5px;
 }
 #femLogo {
   width: 40%;
@@ -106,10 +111,16 @@ button:focus, button:active {
   outline: none;
 }
 #boldP {
-  font-family: rockwell;
+  font-family: 'Roboto Slab', serif;
   font-weight: bolder;
   text-decoration: underline;
 }
 #linkHere {
   color: rgb(255, 27, 198);
+}
+#parGap {
+  margin: 20px 0;
+}
+#pinkSteps {
+  color: rgb(254, 60, 170);
 }
