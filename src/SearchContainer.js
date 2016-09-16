@@ -21,6 +21,15 @@ class SearchContainer extends Component {
     var self = this;
     evt.preventDefault();
     calls.queryFirst(this.state.query).then( data => {
+      if (data.length === 0) {
+        data[0] = {"errMsg": "No movie found by that title."}
+        self.setState({
+          query: '',
+          movies: data,
+          hasSearched: true
+        });
+      }
+      else {
       var complete = 0;
       for(var i = 0; i < data.length; i++){
 
@@ -38,13 +47,13 @@ class SearchContainer extends Component {
                 movies:data,
                 hasSearched: true
               });
-            }
-          });
-        })(i);
-
-      }
-    });
-  }
+            } //end of if-statement
+          }); //end of second (chained) query promise (assigning keys)
+        })(i); //end of IIFE
+      } //end of for-loop
+    } //end of else statement
+  }); //end of first query promise
+} //end of onSubmit function
 
   render(){
     if (this.state.hasSearched){

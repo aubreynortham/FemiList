@@ -3,7 +3,6 @@ var calls = {};
 
 calls.queryFirst = function(query) {
   var term = query.replace(/\s/, "+"); //replace white space characters with a "+"
-  var url = "https://omdbapi.com?i=";
   var bechurl = "https://cors-anywhere.herokuapp.com/http://bechdeltest.com/api/v1/getMoviesByTitle?title=" + term; //use this sorcery to
   return $.getJSON(bechurl).then(function(response){
     return response;

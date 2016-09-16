@@ -5,6 +5,7 @@ class Results extends Component {
 
   render(){
     let {movies} = this.props;
+    console.log(movies);
     for(var prop in movies[0]){
       if(movies[0].hasOwnProperty(prop)){
       } else {
@@ -42,27 +43,37 @@ class Results extends Component {
         movie.femSplain = "This movie passes all test criteria!";
       }
 
-      return (
-        <div key={index}>
-          <div id="movieWrap">
-            <h1>{title}</h1>
-            <img id="movPic" src={movie.Poster} alt={title} />
-            <p><span id="boldP">Genre</span>: {movie.Genre}</p>
-            <p><span id="boldP">Release Date</span>: {movie.year}</p>
-            <p><span id="boldP">Parental Rating</span>: {movie.Rated}</p>
-            <p><span id="boldP">IMDB Rating</span>: {movie.imdbRating} / 10</p>
-            <p><span id="boldP">Plot</span>: {movie.Plot}</p>
-            <h3>Bechdel Score: {movie.rating} / 3</h3>
-            <i className={movie.iconClassX} aria-hidden='true'></i>
-            <i className={movie.iconClass1} aria-hidden='true'></i>
-            <i className={movie.iconClass2} aria-hidden='true'></i>
-            <i className={movie.iconClass3} aria-hidden='true'></i>
-            <p id="femSplaining">{movie.femSplain}</p>
+      if (!movie.errMsg){
+        return (
+          <div key={index}>
+            <div id="movieWrap">
+              <h1>{title}</h1>
+              <img id="movPic" src={movie.Poster} alt={title} />
+              <p><span id="boldP">Genre</span>: {movie.Genre}</p>
+              <p><span id="boldP">Release Date</span>: {movie.year}</p>
+              <p><span id="boldP">Parental Rating</span>: {movie.Rated}</p>
+              <p><span id="boldP">IMDB Rating</span>: {movie.imdbRating} / 10</p>
+              <p><span id="boldP">Plot</span>: {movie.Plot}</p>
+              <h3>Bechdel Score: {movie.rating} / 3</h3>
+              <i className={movie.iconClassX} aria-hidden='true'></i>
+              <i className={movie.iconClass1} aria-hidden='true'></i>
+              <i className={movie.iconClass2} aria-hidden='true'></i>
+              <i className={movie.iconClass3} aria-hidden='true'></i>
+              <p id="femSplaining">{movie.femSplain}</p>
+            </div>
           </div>
-        </div>
-      );
+        );
+      } else {
+          return (
+            <div key={index}>
+              <div id="errWrap">
+                <h2>{movie.errMsg}</h2>
+                <p>This site pulls in movie data from the Bechdel Test API. If you think a movie should be rated that is not yet in the database, contribute to the API <a id="hereLink" href="http://bechdeltest.com/add/">here</a>!</p>
+              </div>
+            </div>
+          )
+      }
     });
-
     return (
       <div>{results}</div>
     );
